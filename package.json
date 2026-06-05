@@ -1,0 +1,71 @@
+{
+  "name": "typora-live-markdown",
+  "displayName": "Typora Live Markdown",
+  "description": "Typora-style live Markdown preview with source/preview toggle and LaTeX support.",
+  "version": "0.0.1",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:markdown",
+    "onCommand:typoraMarkdown.toggleMode",
+    "onCommand:typoraMarkdown.openPreview"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "typoraMarkdown.toggleMode",
+        "title": "Typora Markdown: Toggle Source/Preview"
+      },
+      {
+        "command": "typoraMarkdown.openPreview",
+        "title": "Typora Markdown: Open Live Preview"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "typoraMarkdown.toggleMode",
+        "key": "ctrl+/",
+        "mac": "cmd+/",
+        "when": "editorLangId == markdown || activeWebviewPanelId == 'typoraMarkdown.preview'"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "typoraMarkdown.openPreview",
+          "when": "resourceLangId == markdown",
+          "group": "navigation"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "typoraMarkdown.toggleMode",
+          "when": "resourceLangId == markdown",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "tsc --noEmit -p ./"
+  },
+  "dependencies": {
+    "katex": "^0.16.22",
+    "markdown-it": "^14.1.0"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^14.1.2",
+    "@types/node": "^20.19.0",
+    "@types/vscode": "^1.90.0",
+    "typescript": "^5.8.3"
+  }
+}
